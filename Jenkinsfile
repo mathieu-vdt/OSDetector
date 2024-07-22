@@ -10,8 +10,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'chmod +x script.sh'
-                sh './script.sh'
+                sh 'chmod +x OSDetector.py'
+                sh 'python3 OSDetector.py'
             }
         }
     }
