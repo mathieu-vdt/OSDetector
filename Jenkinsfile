@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Get the Code !') {
             steps {
                 git branch: 'main', url: 'https://github.com/csurqunix/OSDetector.git'
             }
         }
 
-        stage('Build') {
+        stage('Setting permissions and running the script') {
             steps {
                 sh 'chmod +x OSDetector.py'
                 sh 'python3 OSDetector.py'
@@ -18,10 +18,10 @@ pipeline {
 
     post {
         success {
-            echo 'Build and script execution succeeded!'
+            echo 'It worked, you Geniuuuus !'
         }
         failure {
-            echo 'Build or script execution failed.'
+            echo 'Ohh god, we are in troubles'
             script {
                 def emailBody = "Bonjour,\n\nLa construction et l'exécution du script ont échoué. Veuillez vérifier les journaux de construction Jenkins pour plus de détails.\n\nCordialement,\nL'équipe DevOps"
                 emailext (
