@@ -4,12 +4,12 @@ python:
 
 # Commande pour exécuter le script
 script:
-  - python OSDetector.py
+  - python -m unittest discover  
 
 # Notifications (optionnelles)
 notifications:
   email:
     recipients:
-      - VOTRE_ADRESSE_MAIL@example.com
+      - cedsurq@protonmail.com
     on_success: always
     on_failure: always
