@@ -28,17 +28,17 @@ pipeline {
             }
         }
 
-        // stage('Nettoyage') {
-        //     steps {
-        //         script {
-        //             // Exécution de la commande 'make clean'
-        //             if (isUnix()) {
-        //                 sh 'make clean'
-        //             } else {
-        //                 bat 'make clean'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Nettoyage') {
+            steps {
+                script {
+                    // Exécution de la commande 'make clean'
+                    if (isUnix()) {
+                        sh 'make clean'
+                    } else {
+                        bat 'make clean'
+                    }
+                }
+            }
+        }
     }
 }
