@@ -4,19 +4,40 @@ pipeline {
     stages {
         stage('Clonage du dépôt GitHub') {
             steps {
-                git branch: ‘main’, url : 'https://github.com/mathieu-vdt/OSDetector.git'
+                script {
+                    try {
+                        git branch: 'main', url: 'https://github.com/mathieu-vdt/OSDetector.git'
+                    } catch (Exception e) {
+                        echo "⚠️ Erreur lors du clonage : ${e}"
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
 
         stage('Installation de Python 3.11 et pip') {
             steps {
-                sh 'sudo apt update && sudo apt install -y python3.11 python3-pip'
+                script {
+                    try {
+                        sh 'sudo apt update && sudo apt install -y python3.11 python3-pip'
+                    } catch (Exception e) {
+                        echo "⚠️ Erreur lors de l'installation de Python : ${e}"
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
 
         stage('Exécution du script Python') {
             steps {
-                sh 'python3.11 script.py'
+                script {
+                    try {
+                        sh 'python3.11 script.py'
+                    } catch (Exception e) {
+                        echo "⚠️ Erreur lors de l\'exécution du script : ${e}"
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
     }
