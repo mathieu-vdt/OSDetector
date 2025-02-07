@@ -16,5 +16,13 @@ pipeline {
                 sh 'python3 script.py'
             }
         }
+
+        post {
+        always {
+            emailext subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
+                     body: "Le build ${currentBuild.currentResult} est terminé.\n\nConsultez les logs ici : ${env.BUILD_URL}",
+                     to: 'luckylebg@oui.com'
+        }
+    }
     }
 }
