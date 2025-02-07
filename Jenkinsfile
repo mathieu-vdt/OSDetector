@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'sudo apt update && sudo apt install -y python3.11 python3-pip'
+                        sh 'apt update && sudo apt install -y python3.11 python3-pip'
                     } catch (Exception e) {
                         echo "⚠️ Erreur lors de l'installation de Python : ${e}"
                         currentBuild.result = 'UNSTABLE'
