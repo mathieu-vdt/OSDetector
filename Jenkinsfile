@@ -16,29 +16,29 @@ pipeline {
             }
         }
 
-        stage('Permissions') {
-            when {
-                expression { return isUnix() } // Cette étape ne s'exécute que si le système est Unix
-            }
-            steps {
-                script {
-                    // Donner les droits d'exécution au binaire résultant
-                    sh 'chmod +x <nom_du_binaire>' // Remplacez '<nom_du_binaire>' par le nom réel du binaire
-                }
-            }
-        }
+        // stage('Permissions') {
+        //     when {
+        //         expression { return isUnix() } // Cette étape ne s'exécute que si le système est Unix
+        //     }
+        //     steps {
+        //         script {
+        //             // Donner les droits d'exécution au binaire résultant
+        //             sh 'chmod +x <nom_du_binaire>' // Remplacez '<nom_du_binaire>' par le nom réel du binaire
+        //         }
+        //     }
+        // }
 
-        stage('Nettoyage') {
-            steps {
-                script {
-                    // Exécution de la commande 'make clean'
-                    if (isUnix()) {
-                        sh 'make clean'
-                    } else {
-                        bat 'make clean'
-                    }
-                }
-            }
-        }
+        // stage('Nettoyage') {
+        //     steps {
+        //         script {
+        //             // Exécution de la commande 'make clean'
+        //             if (isUnix()) {
+        //                 sh 'make clean'
+        //             } else {
+        //                 bat 'make clean'
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
