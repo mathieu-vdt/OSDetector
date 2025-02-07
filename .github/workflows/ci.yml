@@ -31,7 +31,7 @@ jobs:
           pytest --maxfail=1 --disable-warnings -q  # Exécuter pytest et afficher les résultats
 
       - name: Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.3
         with:
           name: pytest-results
           path: ./test_reports/  # Assurez-vous de sauvegarder les résultats des tests dans ce répertoire
