@@ -61,33 +61,35 @@ def list_containers(client):
 
 # Fonction principale
 def main():
-    # Vérifier les arguments
-    if len(sys.argv) < 2:
-        print("Usage: python conteneurcreator.py <action> [options]")
-        sys.exit(1)
+    # Affichage des options disponibles
+    print("Veuillez choisir une action :")
+    print("1 - Créer et démarrer un conteneur")
+    print("2 - Arrêter un conteneur")
+    print("3 - Supprimer un conteneur")
+    print("4 - Lister les conteneurs")
 
-    action = sys.argv[1]
-    image_name = "nginx"  # Image par défaut, vous pouvez changer cela en fonction de vos besoins
+    # Demander à l'utilisateur de choisir une action
+    action = input("Entrez le numéro de l'action souhaitée (1/2/3/4) : ")
+
+    # Paramètres par défaut
+    image_name = "nginx"  # Image par défaut
     container_name = "mon_conteneur"  # Nom par défaut du conteneur
     ports = {"80/tcp": 8080}  # Exemple de mappage de port
 
     # Créer un client Docker
     client = get_docker_client()
 
-    if action == "create":
-        # Créer et démarrer un conteneur
+    # Exécuter l'action choisie
+    if action == "1":
         create_and_start_container(client, image_name, container_name, ports)
-    elif action == "stop":
-        # Arrêter un conteneur
+    elif action == "2":
         stop_container(client, container_name)
-    elif action == "remove":
-        # Supprimer un conteneur
+    elif action == "3":
         remove_container(client, container_name)
-    elif action == "list":
-        # Lister les conteneurs
+    elif action == "4":
         list_containers(client)
     else:
-        print(f"Action inconnue: {action}")
+        print("Option invalide. Veuillez entrer un numéro valide (1/2/3/4).")
         sys.exit(1)
 
 if __name__ == "__main__":
