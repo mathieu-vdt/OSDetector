@@ -6,7 +6,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mathieu-vdt/OSDetector.git'
             }
         }
-        stage('Installation de Python 3.11 et pip') {
+        stage('Installation de Python 3 et pip') {
             steps {
                 sh 'sudo apt update && sudo apt install -y python3 python3-pip'
             }
